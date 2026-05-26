@@ -1,0 +1,31 @@
+# 🔒 Environment Variables (CRITICAL: Never commit these!)
+.env
+backend/.env
+
+# 🐍 Python Virtual Environments
+venv/
+.venv/
+env/
+.env_venv/
+
+# 🐍 Python Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 🍎 Mac OS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 💻 IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 📦 Logs and Databases
+*.log
+*.sqlite3
+
+node_modules/
