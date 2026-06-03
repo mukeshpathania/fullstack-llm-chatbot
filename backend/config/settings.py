@@ -2,9 +2,11 @@
 from dotenv import load_dotenv
 # Import os to access the environment variables from the operating system
 import os
+from pathlib import Path
 
-# Execute the function to actually load the variables into the environment
-load_dotenv()
+# Load the .env file from the backend folder no matter where the app is started.
+BASE_DIR = Path(__file__).resolve().parents[1]
+load_dotenv(BASE_DIR / ".env", override=True)
 
 # Create a class to store and manage our configuration settings
 class Settings:

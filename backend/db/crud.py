@@ -7,6 +7,8 @@ from datetime import datetime
 
 # Function to create a brand new chat session
 def create_chat(title: str):
+    if chats_collection is None:
+        raise RuntimeError("Database not connected. Check your MONGO_URI in .env")
     # Define the document structure for the new chat
     chat_doc = {
         "title": title, # Set the chat title
@@ -42,6 +44,8 @@ def add_qa_to_chat(chat_id: str, question: str, answer: str):
 
 # Function to fetch all chat sessions (used for the history sidebar)
 def get_all_chats():
+    if chats_collection is None:
+        return []  # Return empty list if DB is not connected
     # Fetch all documents from the chats collection and sort them newest to oldest
     chats = chats_collection.find().sort("created_at", -1)
     
@@ -62,6 +66,8 @@ def get_all_chats():
 
 # Function to fetch a specific chat and ALL its past messages (used when clicking a chat in history)
 def get_chat_with_qa(chat_id: str):
+    if chats_collection is None:
+        return None  # Return None if DB is not connected
     # Find the specific chat document using its ID
     chat = chats_collection.find_one({"_id": ObjectId(chat_id)})
     # If the chat doesn't exist, return None
